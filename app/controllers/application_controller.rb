@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 	def create
 		hash = SCrypt::Password.create(params[:password],
 		  max_mem: 0,
-		  key_len: 512
+		  key_len: 512,
+		  max_time: 2
 		)
 		pass = Password.create!(password: hash)
 		redirect_to application_path(pass.id)
